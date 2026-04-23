@@ -1,4 +1,3 @@
-import logo from "./assets/logo.png";
 import React, { useState, useRef, useEffect } from 'react';
 import { Plane, Search, User, Briefcase, MapPin, Calendar, Clock, ArrowRightLeft, Package, Lock, ChevronRight, ChevronLeft, CheckCircle2, ChevronDown, SlidersHorizontal, Fingerprint, Zap, Car, Building2, Ticket, History, Building, Wallet, Info, ShieldCheck, RefreshCw, Tag, LayoutGrid, Utensils, Luggage, Star, Undo2, PlayCircle, Smartphone, SmartphoneNfc, FileText, QrCode, Apple, Sparkles, Palmtree, MountainSnow, Sunset, Waves, CalendarDays, TrendingDown, Facebook, Twitter, Instagram, Youtube } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -119,7 +118,7 @@ export default function App() {
           <div className="flex items-center gap-4 cursor-pointer" onClick={() => setPersona('personal')}>
             <div className="bg-white rounded-full flex items-center justify-center w-12 h-12 shrink-0 border border-white/10 shadow-sm">
               <img 
-                src={logo} 
+                src="/logo.png" 
                 alt="IndiGo logo" 
                 className="w-[75%] h-[75%] object-contain block"
               />
@@ -865,7 +864,7 @@ export default function App() {
                          <div className="flex flex-col sm:flex-row items-center gap-6">
                            <div className="flex items-center gap-2">
                               <div className="bg-white rounded-full flex items-center justify-center w-10 h-10 shrink-0 border border-white/10 shadow-sm">
-                                 <img src={logo} alt="IndiGo Logo" className="w-[75%] h-[75%] object-contain block" />
+                                 <img src="/logo.png" alt="IndiGo Logo" className="w-[75%] h-[75%] object-contain block" />
                               </div>
                               <span className="text-xl font-bold tracking-tight text-white/90">IndiGo</span>
                            </div>
