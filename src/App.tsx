@@ -117,11 +117,11 @@ export default function App() {
           
           {/* Logo Section */}
           <div className="flex items-center gap-4 cursor-pointer" onClick={() => setPersona('personal')}>
-            <div className="bg-white rounded-full flex items-center justify-center w-12 h-12 overflow-hidden shrink-0">
+            <div className="bg-white rounded-full flex items-center justify-center w-12 h-12 overflow-hidden shrink-0 p-1">
               <img 
-                src="https://upload.wikimedia.org/wikipedia/commons/7/7f/IndiGo_Logo.svg" 
+                src={logo} 
                 alt="IndiGo logo" 
-                className="w-7 h-7 object-contain"
+                className="w-full h-full object-contain"
               />
             </div>
             <div>
