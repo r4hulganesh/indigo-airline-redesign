@@ -118,7 +118,11 @@ export default function App() {
           {/* Logo Section */}
           <div className="flex items-center gap-4 cursor-pointer" onClick={() => setPersona('personal')}>
             <div className="bg-white rounded-full flex items-center justify-center w-12 h-12 overflow-hidden shrink-0">
-              <img src={logo} alt="IndiGo logo" className="w-[70%] h-[70%] object-contain block" />
+              <img 
+                src="https://upload.wikimedia.org/wikipedia/commons/7/7f/IndiGo_Logo.svg" 
+                alt="IndiGo logo" 
+                className="w-7 h-7 object-contain"
+              />
             </div>
             <div>
               <h1 className="text-2xl font-semibold tracking-tight text-white leading-none">IndiGo</h1>
