@@ -424,6 +424,14 @@ export default function App() {
                   </div>
                 </div>
 
+                      {/* Price Insight */}
+                <div className="max-w-5xl mx-auto flex items-center justify-center mt-4">
+                  <p className="text-xs font-medium text-white/50 tracking-wide">
+                    Prices dropped up to 12% this week on popular routes
+                  </p>
+                </div>
+              </div>
+
                 {/* Trending & Special Fares (Moved outside search box) */}
                 <div className="max-w-5xl mx-auto flex flex-col items-center gap-4 mt-6">
                   {/* Recent & Trending Searches */}
@@ -452,12 +460,84 @@ export default function App() {
                 </div>
 
                 {/* Main Content Layout */}
-                <div className="max-w-[1400px] mx-auto mt-10 space-y-12">
+                <div className="max-w-[1400px] mx-auto mt-12 space-y-16">
                   
-                  {/* Deals & Offers Section */}
+                  {/* Why Book With Us Section */}
                   <div className="max-w-5xl mx-auto w-full relative z-20">
-                    <div className="flex items-center justify-between mb-4 px-2">
-                       <h3 className="text-xl font-medium tracking-wide">Deals & Offers</h3>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                      <div className="bg-white/[0.04] border border-white/10 rounded-2xl p-6 flex flex-col items-center text-center hover:bg-white/[0.06] hover:border-white/20 transition-all">
+                        <Clock className="w-8 h-8 text-white/80 mb-4" strokeWidth={1.5} />
+                        <h4 className="text-sm font-bold text-white mb-1.5 tracking-wide uppercase">On-time Performance</h4>
+                        <p className="text-xs text-white/60 leading-relaxed font-medium">India's most punctual airline network</p>
+                      </div>
+                      <div className="bg-white/[0.04] border border-white/10 rounded-2xl p-6 flex flex-col items-center text-center hover:bg-white/[0.06] hover:border-white/20 transition-all">
+                        <Tag className="w-8 h-8 text-white/80 mb-4" strokeWidth={1.5} />
+                        <h4 className="text-sm font-bold text-white mb-1.5 tracking-wide uppercase">Lowest Fare Guarantee</h4>
+                        <p className="text-xs text-white/60 leading-relaxed font-medium">Unbeatable prices by booking direct</p>
+                      </div>
+                      <div className="bg-white/[0.04] border border-white/10 rounded-2xl p-6 flex flex-col items-center text-center hover:bg-white/[0.06] hover:border-white/20 transition-all">
+                        <RefreshCw className="w-8 h-8 text-white/80 mb-4" strokeWidth={1.5} />
+                        <h4 className="text-sm font-bold text-white mb-1.5 tracking-wide uppercase">Flexible Date Changes</h4>
+                        <p className="text-xs text-white/60 leading-relaxed font-medium">Easy planning with minimal fee shifts</p>
+                      </div>
+                      <div className="bg-white/[0.04] border border-white/10 rounded-2xl p-6 flex flex-col items-center text-center hover:bg-white/[0.06] hover:border-white/20 transition-all">
+                        <ShieldCheck className="w-8 h-8 text-white/80 mb-4" strokeWidth={1.5} />
+                        <h4 className="text-sm font-bold text-white mb-1.5 tracking-wide uppercase">Secure Booking</h4>
+                        <p className="text-xs text-white/60 leading-relaxed font-medium">End-to-end encrypted transactions</p>
+                      </div>
+                     </div>
+                  </div>
+
+                  {/* Explore Destinations Module */}
+                  <div className="max-w-[1400px] mx-auto w-full relative z-20">
+                    <div className="glass-panel-dark border border-white/10 rounded-[2rem] p-8 flex flex-col shadow-xl relative overflow-hidden">
+                      <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-white/[0.02] to-transparent pointer-events-none" />
+                      
+                      <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-8 relative z-10">
+                        <div>
+                           <div className="flex items-center gap-3 mb-2">
+                             <MapPin className="w-5 h-5 text-emerald-400" />
+                             <h3 className="text-2xl font-medium tracking-wide">Explore destinations</h3>
+                           </div>
+                           <p className="text-sm text-white/60">Find your next getaway by budget or vibe.</p>
+                        </div>
+                        
+                        <div className="flex flex-wrap gap-2">
+                           <button className="px-4 py-2 rounded-full border border-white/20 bg-white/10 text-white text-sm font-bold hover:bg-white/20 transition-colors">Under ₹5,000</button>
+                           <button className="px-4 py-2 rounded-full border border-white/10 bg-white/5 text-white/70 text-sm font-medium hover:bg-white/10 transition-colors">Under ₹10,000</button>
+                           <button className="px-4 py-2 rounded-full border border-white/10 bg-white/5 text-white/70 text-sm font-medium hover:bg-white/10 transition-colors">Under ₹15,000</button>
+                           <div className="w-px h-6 bg-white/10 self-center mx-1"></div>
+                           <button className="px-4 py-2 rounded-full border border-white/10 bg-white/5 text-white/70 text-sm font-medium hover:bg-white/10 transition-colors flex items-center gap-1.5"><Waves className="w-3.5 h-3.5"/> Beach</button>
+                           <button className="px-4 py-2 rounded-full border border-white/10 bg-white/5 text-white/70 text-sm font-medium hover:bg-white/10 transition-colors flex items-center gap-1.5"><Building className="w-3.5 h-3.5"/> City</button>
+                           <button className="px-4 py-2 rounded-full border border-white/10 bg-white/5 text-white/70 text-sm font-medium hover:bg-white/10 transition-colors flex items-center gap-1.5"><MountainSnow className="w-3.5 h-3.5"/> Nature</button>
+                           <button className="px-4 py-2 rounded-full border border-white/10 bg-white/5 text-white/70 text-sm font-medium hover:bg-white/10 transition-colors flex items-center gap-1.5"><Sunset className="w-3.5 h-3.5"/> Weekend</button>
+                        </div>
+                      </div>
+
+                      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 relative z-10">
+                        {destinations.slice(0, 6).map((dest) => (
+                          <div key={dest.id} className="relative rounded-2xl overflow-hidden group cursor-pointer aspect-[16/10] shadow-[0_8px_30px_rgba(0,0,0,0.12)]">
+                            <img
+                              src={dest.image}
+                              alt={dest.title}
+                              className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                            />
+                            <div className="absolute inset-0 card-overlay transition-opacity duration-300" />
+                            <div className="absolute inset-0 p-6 flex flex-col justify-end">
+                              <h4 className="text-2xl font-serif leading-tight mb-1">{dest.title}</h4>
+                              <p className="text-xs text-white/80 font-medium mb-2">{dest.subtitle}</p>
+                              <p className="text-base font-semibold">{dest.price}</p>
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Deals & Offers Section */}
+                  <div className="max-w-5xl mx-auto w-full relative z-20 pb-16">
+                    <div className="flex items-center justify-between mb-6 px-2">
+                       <h3 className="text-2xl font-medium tracking-wide">Deals & Offers</h3>
                        <div className="flex gap-2">
                          <button 
                            onClick={() => scrollDeals('left')}
@@ -530,242 +610,9 @@ export default function App() {
                       </div>
                     </div>
                   </div>
+                </div>
 
-                  {/* Why Book With Us Section */}
-                  <div className="max-w-[1400px] mx-auto w-full relative z-20">
-                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-                      <div className="bg-white/[0.04] border border-white/10 rounded-2xl p-6 flex flex-col items-center text-center hover:bg-white/[0.06] hover:border-white/20 transition-all">
-                        <Clock className="w-8 h-8 text-white/80 mb-4" strokeWidth={1.5} />
-                        <h4 className="text-sm font-bold text-white mb-1.5 tracking-wide uppercase">On-time Performance</h4>
-                        <p className="text-xs text-white/60 leading-relaxed font-medium">India's most punctual airline network</p>
-                      </div>
-                      <div className="bg-white/[0.04] border border-white/10 rounded-2xl p-6 flex flex-col items-center text-center hover:bg-white/[0.06] hover:border-white/20 transition-all">
-                        <Tag className="w-8 h-8 text-white/80 mb-4" strokeWidth={1.5} />
-                        <h4 className="text-sm font-bold text-white mb-1.5 tracking-wide uppercase">Lowest Fare Guarantee</h4>
-                        <p className="text-xs text-white/60 leading-relaxed font-medium">Unbeatable prices by booking direct</p>
-                      </div>
-                      <div className="bg-white/[0.04] border border-white/10 rounded-2xl p-6 flex flex-col items-center text-center hover:bg-white/[0.06] hover:border-white/20 transition-all">
-                        <RefreshCw className="w-8 h-8 text-white/80 mb-4" strokeWidth={1.5} />
-                        <h4 className="text-sm font-bold text-white mb-1.5 tracking-wide uppercase">Flexible Date Changes</h4>
-                        <p className="text-xs text-white/60 leading-relaxed font-medium">Easy planning with minimal fee shifts</p>
-                      </div>
-                      <div className="bg-white/[0.04] border border-white/10 rounded-2xl p-6 flex flex-col items-center text-center hover:bg-white/[0.06] hover:border-white/20 transition-all">
-                        <ShieldCheck className="w-8 h-8 text-white/80 mb-4" strokeWidth={1.5} />
-                        <h4 className="text-sm font-bold text-white mb-1.5 tracking-wide uppercase">Secure Booking</h4>
-                        <p className="text-xs text-white/60 leading-relaxed font-medium">End-to-end encrypted transactions</p>
-                      </div>
-                     </div>
-                  </div>
-
-                  {/* Smart Discovery Section */}
-                  <div className="max-w-[1400px] mx-auto w-full relative z-20">
-                    <div className="flex flex-col mb-6 px-2">
-                       <h3 className="text-2xl font-medium tracking-wide mb-1">Not sure where to go?</h3>
-                       <p className="text-sm text-white/60">Discover destinations by budget or theme.</p>
-                    </div>
-                    
-                    {/* Budget Pills */}
-                    <div className="flex gap-3 overflow-x-auto hide-scrollbar mb-6 px-2">
-                       <button className="px-5 py-2.5 rounded-full border border-white/20 bg-white/10 text-white text-sm font-bold hover:bg-white/20 transition-colors whitespace-nowrap">Under ₹5,000</button>
-                       <button className="px-5 py-2.5 rounded-full border border-white/10 bg-white/5 text-white/70 text-sm font-medium hover:bg-white/10 transition-colors whitespace-nowrap">Under ₹10,000</button>
-                       <button className="px-5 py-2.5 rounded-full border border-white/10 bg-white/5 text-white/70 text-sm font-medium hover:bg-white/10 transition-colors whitespace-nowrap">Under ₹20,000</button>
-                       <button className="px-5 py-2.5 rounded-full border border-white/10 bg-white/5 text-white/70 text-sm font-medium hover:bg-white/10 transition-colors whitespace-nowrap">Luxury Getaways</button>
-                    </div>
-
-                    {/* Theme Cards */}
-                    <div className="grid grid-cols-2 md:grid-cols-4 gap-4 px-2">
-                       <div className="glass-panel-dark border border-white/10 rounded-2xl p-5 flex flex-col items-start hover:bg-white/10 transition-all cursor-pointer group">
-                          <div className="w-10 h-10 rounded-xl bg-blue-500/20 text-blue-400 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
-                             <Waves className="w-5 h-5" />
-                          </div>
-                          <h4 className="text-white font-bold mb-1">Beach</h4>
-                          <p className="text-xs text-white/50">Coastal escapes</p>
-                       </div>
-                       <div className="glass-panel-dark border border-white/10 rounded-2xl p-5 flex flex-col items-start hover:bg-white/10 transition-all cursor-pointer group">
-                          <div className="w-10 h-10 rounded-xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
-                             <MountainSnow className="w-5 h-5" />
-                          </div>
-                          <h4 className="text-white font-bold mb-1">Nature</h4>
-                          <p className="text-xs text-white/50">Mountains & trails</p>
-                       </div>
-                       <div className="glass-panel-dark border border-white/10 rounded-2xl p-5 flex flex-col items-start hover:bg-white/10 transition-all cursor-pointer group">
-                          <div className="w-10 h-10 rounded-xl bg-purple-500/20 text-purple-400 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
-                             <Building className="w-5 h-5" />
-                          </div>
-                          <h4 className="text-white font-bold mb-1">City</h4>
-                          <p className="text-xs text-white/50">Urban adventures</p>
-                       </div>
-                       <div className="glass-panel-dark border border-white/10 rounded-2xl p-5 flex flex-col items-start hover:bg-white/10 transition-all cursor-pointer group">
-                          <div className="w-10 h-10 rounded-xl bg-amber-500/20 text-amber-400 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
-                             <Sunset className="w-5 h-5" />
-                          </div>
-                          <h4 className="text-white font-bold mb-1">Weekend</h4>
-                          <p className="text-xs text-white/50">Short breaks</p>
-                       </div>
-                    </div>
-                  </div>
-
-                  {/* Explore Destinations Module */}
-                  <div className="max-w-[1400px] mx-auto w-full">
-                    <div className="glass-panel-dark rounded-[2rem] p-8 flex flex-col bg-white/5 shadow-xl">
-                      <div className="flex items-center justify-between mb-8">
-                        <div className="flex items-center gap-3">
-                           <MapPin className="w-6 h-6 text-white/70" />
-                           <h3 className="text-2xl font-medium tracking-wide">Explore Destinations</h3>
-                        </div>
-                        <button className="text-sm font-medium text-white/60 hover:text-white transition-colors">See all</button>
-                      </div>
-
-                      <div className="flex gap-6 overflow-x-auto hide-scrollbar pb-6 snap-x snap-mandatory">
-                        {destinations.map((dest) => (
-                          <div key={dest.id} className="relative rounded-2xl overflow-hidden group cursor-pointer aspect-[4/3] shadow-[0_8px_30px_rgba(0,0,0,0.12)] shrink-0 w-[85vw] sm:w-[350px] md:w-[380px] lg:w-[400px] snap-center sm:snap-start">
-                            <img
-                              src={dest.image}
-                              alt={dest.title}
-                              className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                            />
-                            <div className="absolute inset-0 card-overlay transition-opacity duration-300" />
-                            <div className="absolute inset-0 p-6 flex flex-col justify-end">
-                              <h4 className="text-3xl font-serif leading-tight mb-1">{dest.title}</h4>
-                              <p className="text-sm text-white/80 font-medium mb-3">{dest.subtitle}</p>
-                              <p className="text-lg font-semibold">{dest.price}</p>
-                            </div>
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Enhance Your Trip Section */}
-                  <div className="max-w-[1400px] mx-auto w-full relative z-20">
-                    <div className="flex items-center justify-between mb-6 px-2">
-                       <h3 className="text-xl font-medium tracking-wide">Enhance Your Trip</h3>
-                    </div>
-                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                      {/* Seat Selection */}
-                      <div className="glass-panel-dark border border-white/10 rounded-[2rem] p-6 flex flex-col hover:bg-white/10 cursor-pointer transition-all group overflow-hidden relative shadow-[0_8px_30px_rgba(0,0,0,0.12)]">
-                         <div className="absolute top-0 right-0 w-32 h-32 bg-blue-500/10 blur-[40px] rounded-full pointer-events-none group-hover:bg-blue-500/20 transition-colors" />
-                         <div className="w-12 h-12 rounded-full bg-white/5 border border-white/10 flex items-center justify-center mb-5 group-hover:bg-blue-500/20 transition-colors">
-                            <LayoutGrid className="w-5 h-5 text-white/80 group-hover:text-white transition-colors" />
-                         </div>
-                         <h4 className="text-lg font-bold text-white mb-2 tracking-wide block">Seat Selection</h4>
-                         <p className="text-sm text-white/60 mb-6 flex-1 leading-relaxed">Prefer a window or extra legroom? Reserve your favorite spot in advance.</p>
-                         <button className="flex items-center text-sm font-semibold text-white/80 group-hover:text-white transition-colors w-fit">
-                            Add now <ChevronRight className="w-4 h-4 ml-1" />
-                         </button>
-                      </div>
-                      
-                      {/* In-flight Meals */}
-                      <div className="glass-panel-dark border border-white/10 rounded-[2rem] p-6 flex flex-col hover:bg-white/10 cursor-pointer transition-all group overflow-hidden relative shadow-[0_8px_30px_rgba(0,0,0,0.12)]">
-                         <div className="absolute top-0 right-0 w-32 h-32 bg-emerald-500/10 blur-[40px] rounded-full pointer-events-none group-hover:bg-emerald-500/20 transition-colors" />
-                         <div className="w-12 h-12 rounded-full bg-white/5 border border-white/10 flex items-center justify-center mb-5 group-hover:bg-emerald-500/20 transition-colors">
-                            <Utensils className="w-5 h-5 text-white/80 group-hover:text-white transition-colors" />
-                         </div>
-                         <h4 className="text-lg font-bold text-white mb-2 tracking-wide block">In-flight Meals</h4>
-                         <p className="text-sm text-white/60 mb-6 flex-1 leading-relaxed">Pre-book from our selection of delicious hot meals and refreshing beverages.</p>
-                         <button className="flex items-center text-sm font-semibold text-white/80 group-hover:text-white transition-colors w-fit">
-                            Add now <ChevronRight className="w-4 h-4 ml-1" />
-                         </button>
-                      </div>
-
-                      {/* Extra Baggage */}
-                      <div className="glass-panel-dark border border-white/10 rounded-[2rem] p-6 flex flex-col hover:bg-white/10 cursor-pointer transition-all group overflow-hidden relative shadow-[0_8px_30px_rgba(0,0,0,0.12)]">
-                         <div className="absolute top-0 right-0 w-32 h-32 bg-purple-500/10 blur-[40px] rounded-full pointer-events-none group-hover:bg-purple-500/20 transition-colors" />
-                         <div className="w-12 h-12 rounded-full bg-white/5 border border-white/10 flex items-center justify-center mb-5 group-hover:bg-purple-500/20 transition-colors">
-                            <Luggage className="w-5 h-5 text-white/80 group-hover:text-white transition-colors" />
-                         </div>
-                         <h4 className="text-lg font-bold text-white mb-2 tracking-wide block">Extra Baggage</h4>
-                         <p className="text-sm text-white/60 mb-6 flex-1 leading-relaxed">Avoid last-minute fees at the airport. Pre-purchase your extra baggage weight.</p>
-                         <button className="flex items-center text-sm font-semibold text-white/80 group-hover:text-white transition-colors w-fit">
-                            Add now <ChevronRight className="w-4 h-4 ml-1" />
-                         </button>
-                      </div>
-
-                      {/* Priority Boarding */}
-                      <div className="glass-panel-dark border border-white/10 rounded-[2rem] p-6 flex flex-col hover:bg-white/10 cursor-pointer transition-all group overflow-hidden relative shadow-[0_8px_30px_rgba(0,0,0,0.12)]">
-                         <div className="absolute top-0 right-0 w-32 h-32 bg-amber-500/10 blur-[40px] rounded-full pointer-events-none group-hover:bg-amber-500/20 transition-colors" />
-                         <div className="w-12 h-12 rounded-full bg-white/5 border border-white/10 flex items-center justify-center mb-5 group-hover:bg-amber-500/20 transition-colors">
-                            <Star className="w-5 h-5 text-white/80 group-hover:text-white transition-colors" />
-                         </div>
-                         <h4 className="text-lg font-bold text-white mb-2 tracking-wide block">Priority Boarding</h4>
-                         <p className="text-sm text-white/60 mb-6 flex-1 leading-relaxed">Skip the queue. Be the first to board and secure space for your cabin baggage.</p>
-                         <button className="flex items-center text-sm font-semibold text-white/80 group-hover:text-white transition-colors w-fit">
-                            Add now <ChevronRight className="w-4 h-4 ml-1" />
-                         </button>
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Secondary Conversion (Re-engagement) */}
-                  <div className="max-w-3xl mx-auto text-center py-16 relative z-20">
-                     <h2 className="text-4xl font-serif mb-4 tracking-tight">Still planning your trip?</h2>
-                     <p className="text-white/60 text-lg mb-8 font-medium">Explore the best fares and deals before they're gone.</p>
-                     <div className="flex justify-center gap-4">
-                       <button className="px-8 py-3.5 bg-white text-[#001B94] font-bold text-md rounded-xl shadow-[0_0_20px_rgba(255,255,255,0.2)] hover:bg-gray-100 hover:scale-105 active:scale-95 transition-all">Search flights</button>
-                       <button className="px-8 py-3.5 bg-white/5 border border-white/20 text-white font-bold text-md rounded-xl hover:bg-white/10 hover:scale-105 active:scale-95 transition-all shadow-sm">View deals</button>
-                     </div>
-                  </div>
-
-                  {/* Price Insights / Flexible Dates */}
-                  <div className="max-w-[1400px] mx-auto w-full relative z-20 mb-8 px-2">
-                     <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 glass-panel-dark rounded-2xl p-6 border border-white/10 bg-gradient-to-r from-emerald-500/10 to-transparent">
-                        <div className="flex items-center gap-4">
-                           <div className="w-12 h-12 rounded-xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center shrink-0">
-                              <CalendarDays className="w-6 h-6" />
-                           </div>
-                           <div>
-                              <h4 className="text-white font-bold tracking-wide mb-1 flex items-center gap-2">Price drop alert <TrendingDown className="w-4 h-4 text-emerald-400" /></h4>
-                              <p className="text-sm text-white/60">Fares to Mumbai are unusually low for early next week. Save up to 25% by shifting your dates.</p>
-                           </div>
-                        </div>
-                        <button className="px-5 py-2.5 bg-white/10 hover:bg-white/20 text-white text-sm font-bold rounded-xl transition-colors border border-white/10 whitespace-nowrap">View Lowest Fares</button>
-                     </div>
-                  </div>
-
-                  {/* Quick Actions Utility Layer */}
-                  <div className="max-w-[1400px] mx-auto w-full relative z-20 mb-12">
-                     <h3 className="text-xl font-medium tracking-wide mb-6 px-2">Quick Actions</h3>
-                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-                       <div className="glass-panel-dark border border-white/10 rounded-2xl p-5 flex items-center gap-4 hover:bg-white/10 transition-all cursor-pointer group shadow-[0_8px_30px_rgba(0,0,0,0.12)]">
-                          <div className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center group-hover:scale-110 transition-transform">
-                             <Clock className="w-5 h-5 text-white/80 group-hover:text-white" />
-                          </div>
-                          <div>
-                             <h4 className="text-sm font-bold text-white tracking-wide">Flight Status</h4>
-                             <p className="text-xs text-white/50">Track live departures</p>
-                          </div>
-                       </div>
-                       <div className="glass-panel-dark border border-white/10 rounded-2xl p-5 flex items-center gap-4 hover:bg-white/10 transition-all cursor-pointer group shadow-[0_8px_30px_rgba(0,0,0,0.12)]">
-                          <div className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center group-hover:scale-110 transition-transform">
-                             <Info className="w-5 h-5 text-white/80 group-hover:text-white" />
-                          </div>
-                          <div>
-                             <h4 className="text-sm font-bold text-white tracking-wide">Cancel Booking</h4>
-                             <p className="text-xs text-white/50">Easy self-service</p>
-                          </div>
-                       </div>
-                       <div className="glass-panel-dark border border-white/10 rounded-2xl p-5 flex items-center gap-4 hover:bg-white/10 transition-all cursor-pointer group shadow-[0_8px_30px_rgba(0,0,0,0.12)]">
-                          <div className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center group-hover:scale-110 transition-transform">
-                             <Undo2 className="w-5 h-5 text-white/80 group-hover:text-white" />
-                          </div>
-                          <div>
-                             <h4 className="text-sm font-bold text-white tracking-wide">Track Refund</h4>
-                             <p className="text-xs text-white/50">Check return status</p>
-                          </div>
-                       </div>
-                       <div className="glass-panel-dark border border-white/10 rounded-2xl p-5 flex items-center gap-4 hover:bg-white/10 transition-all cursor-pointer group shadow-[0_8px_30px_rgba(0,0,0,0.12)]">
-                          <div className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center group-hover:scale-110 transition-transform">
-                             <FileText className="w-5 h-5 text-white/80 group-hover:text-white" />
-                          </div>
-                          <div>
-                             <h4 className="text-sm font-bold text-white tracking-wide">View Booking</h4>
-                             <p className="text-xs text-white/50">Itinerary & boarding</p>
-                          </div>
-                       </div>
-                    </div>
-                  </div>
-
-                  {/* Loyalty & App Promotion */}
+                {/* Loyalty & App Promotion */}
                   <div className="max-w-[1400px] mx-auto w-full grid grid-cols-1 lg:grid-cols-2 gap-6 relative z-20 mb-20">
                     
                     {/* Loyalty Section */}
@@ -879,8 +726,6 @@ export default function App() {
                     </div>
                   </footer>
 
-                </div>
-              </div>
             </motion.div>
           ) : (
             <motion.div
