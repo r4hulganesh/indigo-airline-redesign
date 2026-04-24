@@ -69,18 +69,18 @@ export default function App() {
       image: 'https://images.unsplash.com/photo-1512453979798-5ea266f8880c?q=80&w=600&auto=format&fit=crop'
     },
     {
-      id: 3,
-      title: 'Bangkok',
-      subtitle: 'Urban Energy',
-      price: '₹12,999',
-      image: 'https://images.unsplash.com/photo-1583623025817-d180a2221d0a?q=80&w=600&auto=format&fit=crop'
+      id: 6,
+      title: 'Maldives',
+      subtitle: 'Ocean Villas',
+      price: '₹28,500',
+      image: 'https://images.unsplash.com/photo-1514282401047-d79a71a590e8?auto=format&fit=crop&w=600&q=80'
     },
     {
       id: 4,
       title: 'Paris',
       subtitle: 'City of Lights',
       price: '₹45,999',
-      image: 'https://images.unsplash.com/photo-1502602898657-3e907fa005c1?auto=format&fit=crop&w=600&q=80'
+      image: 'https://images.unsplash.com/photo-1499856871958-5b9627545d1a?auto=format&fit=crop&w=600&q=80'
     },
     {
       id: 5,
@@ -90,11 +90,11 @@ export default function App() {
       image: 'https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?auto=format&fit=crop&w=600&q=80'
     },
     {
-      id: 6,
-      title: 'Maldives',
-      subtitle: 'Ocean Villas',
-      price: '₹28,500',
-      image: 'https://images.unsplash.com/photo-1514282401047-d79a71a590e8?auto=format&fit=crop&w=600&q=80'
+      id: 3,
+      title: 'Bangkok',
+      subtitle: 'Urban Energy',
+      price: '₹12,999',
+      image: 'https://images.unsplash.com/photo-1583623025817-d180a2221d0a?q=80&w=600&auto=format&fit=crop'
     }
   ];
 
