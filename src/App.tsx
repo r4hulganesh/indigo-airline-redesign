@@ -57,43 +57,49 @@ export default function App() {
     {
       id: 1,
       title: 'Athens',
-      subtitle: 'A321XLR Direct Route',
-      price: '₹34,999',
+      route: 'DEL → ATH',
+      subtitle: 'Direct flight',
+      price: 'from ₹34,999',
       image: 'https://images.unsplash.com/photo-1555992828-ca4dbe41d294?auto=format&fit=crop&w=600&q=80'
     },
     {
       id: 2,
       title: 'Dubai',
-      subtitle: 'Desert Luxury',
-      price: '₹18,499',
+      route: 'BOM → DXB',
+      subtitle: '3h 25m',
+      price: 'from ₹18,499',
       image: 'https://images.unsplash.com/photo-1512453979798-5ea266f8880c?q=80&w=600&auto=format&fit=crop'
     },
     {
       id: 6,
       title: 'Maldives',
-      subtitle: 'Ocean Villas',
-      price: '₹28,500',
+      route: 'BLR → MLE',
+      subtitle: 'Popular route',
+      price: 'from ₹28,500',
       image: 'https://images.unsplash.com/photo-1514282401047-d79a71a590e8?auto=format&fit=crop&w=600&q=80'
     },
     {
       id: 4,
       title: 'Paris',
-      subtitle: 'City of Lights',
-      price: '₹45,999',
+      route: 'DEL → CDG',
+      subtitle: '9h 15m',
+      price: 'from ₹45,999',
       image: 'https://images.unsplash.com/photo-1499856871958-5b9627545d1a?auto=format&fit=crop&w=600&q=80'
     },
     {
       id: 5,
       title: 'Tokyo',
-      subtitle: 'Cherry Blossom Season',
-      price: '₹38,999',
+      route: 'DEL → HND',
+      subtitle: 'Direct flight',
+      price: 'from ₹38,999',
       image: 'https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?auto=format&fit=crop&w=600&q=80'
     },
     {
       id: 3,
       title: 'Bangkok',
-      subtitle: 'Urban Energy',
-      price: '₹12,999',
+      route: 'CCU → BKK',
+      subtitle: '2h 30m',
+      price: 'from ₹12,999',
       image: 'https://images.unsplash.com/photo-1583623025817-d180a2221d0a?q=80&w=600&auto=format&fit=crop'
     }
   ];
@@ -489,44 +495,65 @@ export default function App() {
                   </div>
 
                   {/* Explore Destinations Module */}
-                  <div className="max-w-[1400px] mx-auto w-full relative z-20">
-                    <div className="glass-panel-dark border border-white/10 rounded-[2rem] p-8 flex flex-col shadow-xl relative overflow-hidden">
-                      <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-white/[0.02] to-transparent pointer-events-none" />
+                  <div className="max-w-[1200px] mx-auto w-full relative z-20 mb-8">
+                    <div className="bg-white/[0.02] border border-white/5 rounded-3xl p-6 sm:p-8 flex flex-col relative shadow-lg">
                       
-                      <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-8 relative z-10">
+                      {/* Header Section */}
+                      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6 relative z-10">
                         <div>
-                           <div className="flex items-center gap-3 mb-2">
+                           <div className="flex items-center gap-3 mb-1">
                              <MapPin className="w-5 h-5 text-emerald-400" />
                              <h3 className="text-2xl font-medium tracking-wide">Explore destinations</h3>
                            </div>
                            <p className="text-sm text-white/60">Find your next getaway by budget or vibe.</p>
                         </div>
-                        
-                        <div className="flex flex-wrap gap-2">
-                           <button className="px-4 py-2 rounded-full border border-white/20 bg-white/10 text-white text-sm font-bold hover:bg-white/20 transition-colors">Under ₹5,000</button>
-                           <button className="px-4 py-2 rounded-full border border-white/10 bg-white/5 text-white/70 text-sm font-medium hover:bg-white/10 transition-colors">Under ₹10,000</button>
-                           <button className="px-4 py-2 rounded-full border border-white/10 bg-white/5 text-white/70 text-sm font-medium hover:bg-white/10 transition-colors">Under ₹15,000</button>
-                           <div className="w-px h-6 bg-white/10 self-center mx-1"></div>
-                           <button className="px-4 py-2 rounded-full border border-white/10 bg-white/5 text-white/70 text-sm font-medium hover:bg-white/10 transition-colors flex items-center gap-1.5"><Waves className="w-3.5 h-3.5"/> Beach</button>
-                           <button className="px-4 py-2 rounded-full border border-white/10 bg-white/5 text-white/70 text-sm font-medium hover:bg-white/10 transition-colors flex items-center gap-1.5"><Building className="w-3.5 h-3.5"/> City</button>
-                           <button className="px-4 py-2 rounded-full border border-white/10 bg-white/5 text-white/70 text-sm font-medium hover:bg-white/10 transition-colors flex items-center gap-1.5"><MountainSnow className="w-3.5 h-3.5"/> Nature</button>
-                           <button className="px-4 py-2 rounded-full border border-white/10 bg-white/5 text-white/70 text-sm font-medium hover:bg-white/10 transition-colors flex items-center gap-1.5"><Sunset className="w-3.5 h-3.5"/> Weekend</button>
-                        </div>
+                        <span className="text-sm font-medium text-white/50 hover:text-white cursor-pointer transition-colors shrink-0">View all destinations &rarr;</span>
+                      </div>
+                      
+                      {/* Filters Section (Full Width Row) */}
+                      <div className="flex flex-col md:flex-row justify-between gap-4 mb-8 relative z-10 w-full">
+                         {/* Left Group: Budget */}
+                         <div className="flex flex-wrap gap-2">
+                            <button className="px-4 py-2 rounded-full border border-white/20 bg-white/10 text-white text-sm font-bold hover:bg-white/20 transition-colors shrink-0">Under ₹5,000</button>
+                            <button className="px-4 py-2 rounded-full border border-white/10 bg-white/5 text-white/70 text-sm font-medium hover:bg-white/10 transition-colors shrink-0">Under ₹10,000</button>
+                            <button className="px-4 py-2 rounded-full border border-white/10 bg-white/5 text-white/70 text-sm font-medium hover:bg-white/10 transition-colors shrink-0">Under ₹15,000</button>
+                         </div>
+                         {/* Right Group: Vibe */}
+                         <div className="flex flex-wrap gap-2">
+                            <button className="px-4 py-2 rounded-full border border-white/10 bg-white/5 text-white/70 text-sm font-medium hover:bg-white/10 transition-colors flex items-center gap-1.5 shrink-0"><Waves className="w-3.5 h-3.5"/> Beach</button>
+                            <button className="px-4 py-2 rounded-full border border-white/10 bg-white/5 text-white/70 text-sm font-medium hover:bg-white/10 transition-colors flex items-center gap-1.5 shrink-0"><Building className="w-3.5 h-3.5"/> City</button>
+                            <button className="px-4 py-2 rounded-full border border-white/10 bg-white/5 text-white/70 text-sm font-medium hover:bg-white/10 transition-colors flex items-center gap-1.5 shrink-0"><MountainSnow className="w-3.5 h-3.5"/> Nature</button>
+                            <button className="px-4 py-2 rounded-full border border-white/10 bg-white/5 text-white/70 text-sm font-medium hover:bg-white/10 transition-colors flex items-center gap-1.5 shrink-0"><Sunset className="w-3.5 h-3.5"/> Weekend</button>
+                         </div>
                       </div>
 
+                      {/* Cards Grid */}
                       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 relative z-10">
-                        {destinations.slice(0, 6).map((dest) => (
-                          <div key={dest.id} className="relative rounded-2xl overflow-hidden group cursor-pointer aspect-[16/10] shadow-[0_8px_30px_rgba(0,0,0,0.12)]">
+                         {destinations.slice(0, 6).map((dest) => (
+                          <div key={dest.id} className="relative rounded-2xl overflow-hidden group cursor-pointer aspect-[16/10] shadow-[0_8px_30px_rgba(0,0,0,0.12)] border border-white/5 hover:border-white/20 transition-all">
                             <img
                               src={dest.image}
                               alt={dest.title}
                               className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                             />
-                            <div className="absolute inset-0 card-overlay transition-opacity duration-300" />
-                            <div className="absolute inset-0 p-6 flex flex-col justify-end">
-                              <h4 className="text-2xl font-serif leading-tight mb-1">{dest.title}</h4>
-                              <p className="text-xs text-white/80 font-medium mb-2">{dest.subtitle}</p>
-                              <p className="text-base font-semibold">{dest.price}</p>
+                            <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent transition-opacity duration-300" />
+                            <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-transparent to-transparent opacity-70 transition-opacity duration-300" />
+                            
+                            {/* Route tag */}
+                            <div className="absolute top-5 left-5">
+                              <p className="text-[10px] font-semibold text-white/50 tracking-widest uppercase">{dest.route}</p>
+                            </div>
+
+                            {/* Card Content Footer */}
+                            <div className="absolute inset-0 p-5 flex flex-col justify-end">
+                              <div className="flex justify-between items-end">
+                                <div>
+                                  <h4 className="text-2xl font-serif text-white leading-tight mb-1">{dest.title}</h4>
+                                  <p className="text-xs text-white/60 mb-2 font-medium">{dest.subtitle}</p>
+                                  <p className="text-base font-bold text-white">{dest.price}</p>
+                                </div>
+                                <span className="text-xs font-semibold text-white/80 group-hover:text-white transition-all opacity-0 group-hover:opacity-100 translate-y-2 group-hover:translate-y-0 duration-300">View flights &rarr;</span>
+                              </div>
                             </div>
                           </div>
                         ))}
