@@ -116,13 +116,6 @@ export default function App() {
           
           {/* Logo Section */}
           <div className="flex items-center gap-4 cursor-pointer" onClick={() => setPersona('personal')}>
-            <div className="bg-white rounded-full flex items-center justify-center w-12 h-12 shrink-0 border border-white/10 shadow-sm">
-              <img 
-                src="/logo.png" 
-                alt="IndiGo logo" 
-                className="w-[75%] h-[75%] object-contain block"
-              />
-            </div>
             <div>
               <h1 className="text-2xl font-semibold tracking-tight text-white leading-none">IndiGo</h1>
               <span className="text-xs text-white/60 font-medium tracking-wide">2026 Kinetic Ecosystem</span>
@@ -863,9 +856,6 @@ export default function App() {
                       <div className="pt-8 border-t border-white/10 flex flex-col lg:flex-row items-center justify-between gap-6">
                          <div className="flex flex-col sm:flex-row items-center gap-6">
                            <div className="flex items-center gap-2">
-                              <div className="bg-white rounded-full flex items-center justify-center w-10 h-10 shrink-0 border border-white/10 shadow-sm">
-                                 <img src="/logo.png" alt="IndiGo Logo" className="w-[75%] h-[75%] object-contain block" />
-                              </div>
                               <span className="text-xl font-bold tracking-tight text-white/90">IndiGo</span>
                            </div>
                            <div className="hidden sm:block h-4 w-px bg-white/20"></div>
