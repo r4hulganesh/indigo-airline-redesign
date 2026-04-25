@@ -111,8 +111,29 @@ export default function App() {
         {/* Minimal Noise Texture */}
         <div className="absolute inset-0 opacity-[0.03] mix-blend-overlay" style={{ backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")` }}></div>
 
-        {/* Faint Grid Lines */}
-        <div className="absolute inset-0 opacity-[0.06]" style={{ backgroundImage: `linear-gradient(to right, #ffffff 1px, transparent 1px), linear-gradient(to bottom, #ffffff 1px, transparent 1px)`, backgroundSize: '60px 60px' }}></div>
+        {/* Faint Aviation Paths */}
+        <svg className="absolute inset-0 w-full h-full opacity-[0.05] pointer-events-none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" viewBox="0 0 1440 800">
+          <defs>
+            <filter id="nodeGlow" x="-50%" y="-50%" width="200%" height="200%">
+              <feGaussianBlur stdDeviation="3" result="blur" />
+              <feComposite in="SourceGraphic" in2="blur" operator="over" />
+            </filter>
+          </defs>
+          
+          {/* Flight Paths */}
+          <path d="M -100 900 Q 500 200 1600 -100" fill="none" stroke="white" strokeWidth="1" opacity="0.5" />
+          <path d="M -200 700 Q 300 50 1500 -200" fill="none" stroke="white" strokeWidth="1" opacity="0.5" />
+          <path d="M 100 1000 Q 800 400 1700 100" fill="none" stroke="white" strokeWidth="1" opacity="0.5" />
+          
+          {/* Primary Nodes (Slightly larger, glowing) */}
+          <circle cx="625" cy="300" r="3" fill="white" filter="url(#nodeGlow)" opacity="0.7" /> 
+          <circle cx="1012" cy="388" r="3.5" fill="white" filter="url(#nodeGlow)" opacity="0.7" />
+          
+          {/* Secondary Nodes (Smaller, faint) */}
+          <circle cx="231" cy="575" r="1.5" fill="white" opacity="0.4" />
+          <circle cx="1081" cy="75" r="2" fill="white" opacity="0.4" />
+          <circle cx="475" cy="150" r="1.5" fill="white" opacity="0.4" />
+        </svg>
       </div>
 
       <div className="min-h-screen font-sans selection:bg-blue-500/30 selection:text-white pt-8 pb-20 px-4 sm:px-6 lg:px-8 z-10 relative">
