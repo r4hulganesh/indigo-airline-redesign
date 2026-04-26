@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { Plane, Search, User, Briefcase, MapPin, Calendar, Clock, ArrowRightLeft, Package, Lock, ChevronRight, ChevronLeft, CheckCircle2, ChevronDown, SlidersHorizontal, Fingerprint, Zap, Car, Building2, Ticket, History, Building, Wallet, Info, ShieldCheck, RefreshCw, Tag, LayoutGrid, Utensils, Luggage, Star, Undo2, PlayCircle, Smartphone, SmartphoneNfc, FileText, QrCode, Apple, Sparkles, Palmtree, MountainSnow, Sunset, Waves, CalendarDays, TrendingDown, Facebook, Twitter, Instagram, Youtube } from 'lucide-react';
+import { Plane, Search, User, Briefcase, MapPin, Calendar, Clock, ArrowRightLeft, Package, Lock, ChevronRight, ChevronLeft, CheckCircle2, ChevronDown, SlidersHorizontal, Fingerprint, Zap, Car, Building2, Ticket, History, Building, Wallet, Info, ShieldCheck, RefreshCw, Tag, LayoutGrid, Utensils, Luggage, Star, Undo2, PlayCircle, Smartphone, SmartphoneNfc, FileText, QrCode, Apple, Sparkles, Palmtree, MountainSnow, Sunset, Waves, CalendarDays, TrendingDown, Facebook, Twitter, Instagram, Youtube, ArrowRight, Minus } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 type UserPersona = 'personal' | 'business';
@@ -52,6 +52,9 @@ export default function App() {
   const [showPrime, setShowPrime] = useState(false);
   const [isTracking, setIsTracking] = useState(false);
   const [trackedStatus, setTrackedStatus] = useState<string | null>(null);
+  const [bluTier, setBluTier] = useState<'Blu 1' | 'Blu 2' | 'Blu 3'>('Blu 1');
+  const [isLoggedIn, setIsLoggedIn] = useState(true); // default true for demo
+  const [bluChips, setBluChips] = useState(2750); // fake balance
 
   const destinations = [
     {
@@ -326,10 +329,22 @@ export default function App() {
                                        <div className="w-7 h-7 rounded-full bg-blue-500/20 flex items-center justify-center border border-blue-400/30">
                                           <Star className="w-4 h-4 text-blue-300" />
                                        </div>
-                                       <span className="text-sm text-white/80 font-medium tracking-wide">Earn up to <span className="text-white font-bold">2,400 BluChip miles</span> on this route</span>
+                                       {isLoggedIn && bluChips > 0 ? (
+                                         <span className="text-sm text-white/70 font-medium tracking-wide">
+                                            Use <span className="text-emerald-400 font-bold">₹{bluChips.toLocaleString('en-IN')}</span> in BluChips to save on this fare
+                                         </span>
+                                       ) : isLoggedIn && bluChips === 0 ? (
+                                         <span className="text-sm text-white/70 font-medium tracking-wide">
+                                            Earn <span className="text-white font-bold">BluChips</span> on this booking to save on your next flight
+                                         </span>
+                                       ) : (
+                                         <span className="text-sm text-white/70 font-medium tracking-wide">
+                                            Earn <span className="text-white font-bold">BluChips</span> on every booking to start saving
+                                         </span>
+                                       )}
                                      </div>
-                                     <button className="text-sm text-blue-400 font-semibold hover:text-blue-300 transition-colors flex items-center gap-1">
-                                       Join now <ChevronRight className="w-3.5 h-3.5" />
+                                     <button className="text-sm text-blue-400 font-semibold hover:text-blue-300 transition-colors flex items-center gap-1.5 group">
+                                       {isLoggedIn && bluChips > 0 ? 'Apply' : isLoggedIn && bluChips === 0 ? 'Details' : 'Join now'} <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5" />
                                      </button>
                                    </div>
                                  </div>
@@ -660,33 +675,16 @@ export default function App() {
                   </div>
                 </div>
 
-                {/* Loyalty & App Promotion */}
-                  <div className="max-w-[1400px] mx-auto w-full grid grid-cols-1 lg:grid-cols-2 gap-6 relative z-20 mb-20">
-                    
-                    {/* Loyalty Section */}
-                    <div className="glass-panel-dark border border-white/10 rounded-[2rem] p-8 flex flex-col justify-between relative overflow-hidden group shadow-[0_8px_30px_rgba(0,0,0,0.12)]">
-                      <div className="absolute top-0 right-0 w-64 h-64 bg-blue-600/20 blur-[60px] rounded-full pointer-events-none" />
-                      <div className="relative z-10 mb-8">
-                         <h3 className="text-3xl font-serif mb-2">Earn rewards every time you fly.</h3>
-                         <p className="text-white/60 mb-6 font-medium text-sm">Join our premier loyalty program and unlock a world of exclusive benefits.</p>
-                         <ul className="space-y-3 mt-6">
-                           <li className="flex gap-3 items-center text-sm font-medium text-white/80"><CheckCircle2 className="w-4 h-4 text-emerald-400" /> Earn points on all bookings</li>
-                           <li className="flex gap-3 items-center text-sm font-medium text-white/80"><CheckCircle2 className="w-4 h-4 text-emerald-400" /> Redeem for flights and upgrades</li>
-                           <li className="flex gap-3 items-center text-sm font-medium text-white/80"><CheckCircle2 className="w-4 h-4 text-emerald-400" /> Exclusive member-only offers</li>
-                         </ul>
-                      </div>
-                      <button className="px-6 py-3 bg-[#001B94] hover:bg-[#0024B3] shadow-[0_0_20px_rgba(0,27,148,0.4)] text-white font-bold rounded-xl transition-all w-fit relative z-10 hover:scale-105 active:scale-95">Join now</button>
-                    </div>
-
-                    {/* App Promo */}
+                {/* App Promo */}
+                <div className="max-w-[1400px] mx-auto w-full relative z-20 mb-20">
                     <div className="glass-panel-dark border border-white/10 rounded-[2rem] p-8 flex flex-col sm:flex-row justify-between relative overflow-hidden shadow-[0_8px_30px_rgba(0,0,0,0.12)]">
                        <div className="absolute top-0 right-0 w-64 h-64 bg-white/5 blur-[60px] rounded-full pointer-events-none" />
                        <div className="relative z-10 flex-1">
-                         <h3 className="text-3xl font-serif mb-2">Get better deals on the app.</h3>
-                         <ul className="space-y-3 mt-6 mb-8">
-                           <li className="flex gap-3 items-center text-sm font-medium text-white/80"><Smartphone className="w-4 h-4 text-white/50" /> Exclusive app-only offers</li>
-                           <li className="flex gap-3 items-center text-sm font-medium text-white/80"><Zap className="w-4 h-4 text-white/50" /> Faster booking experience</li>
-                           <li className="flex gap-3 items-center text-sm font-medium text-white/80"><Clock className="w-4 h-4 text-white/50" /> Real-time flight updates</li>
+                         <h3 className="text-2xl font-serif mb-2">Get better deals on the app.</h3>
+                         <ul className="flex flex-wrap gap-6 mt-6 mb-8 text-sm font-medium text-white/70">
+                           <li className="flex gap-2 items-center"><Smartphone className="w-4 h-4 text-white/40" /> Exclusive app-only offers</li>
+                           <li className="flex gap-2 items-center"><Zap className="w-4 h-4 text-white/40" /> Faster booking experience</li>
+                           <li className="flex gap-2 items-center"><Clock className="w-4 h-4 text-white/40" /> Real-time flight updates</li>
                          </ul>
                          <div className="flex flex-wrap gap-3">
                            <button className="px-4 py-2 border border-white/20 bg-white/5 rounded-xl flex items-center gap-2 hover:bg-white/10 text-xs font-bold transition-colors">
@@ -699,11 +697,11 @@ export default function App() {
                        </div>
                        
                        <div className="hidden sm:flex flex-col items-center justify-center p-6 bg-white/[0.03] rounded-2xl border border-white/10 ml-6 self-center shrink-0">
-                         <QrCode className="w-24 h-24 text-white/90" strokeWidth={1.5} />
+                         <QrCode className="w-24 h-24 text-white/80" strokeWidth={1.5} />
                          <span className="text-[10px] text-white/50 font-bold uppercase tracking-widest mt-4">Scan to download</span>
                        </div>
                     </div>
-                  </div>
+                </div>
 
                   {/* Footer Section */}
                   <footer className="w-full relative z-20 border-t border-white/10 bg-black/20 pt-16 pb-8">
