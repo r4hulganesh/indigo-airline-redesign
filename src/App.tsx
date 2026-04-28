@@ -1,6 +1,9 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Plane, Search, User, Briefcase, MapPin, Calendar, Clock, ArrowRightLeft, Package, Lock, ChevronRight, ChevronLeft, CheckCircle2, ChevronDown, SlidersHorizontal, Fingerprint, Zap, Car, Building2, Ticket, History, Building, Wallet, Info, ShieldCheck, RefreshCw, Tag, LayoutGrid, Utensils, Luggage, Star, Undo2, PlayCircle, Smartphone, SmartphoneNfc, FileText, QrCode, Apple, Sparkles, Palmtree, MountainSnow, Sunset, Waves, CalendarDays, TrendingDown, Facebook, Twitter, Instagram, Youtube, ArrowRight, Minus } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
+import FlightResults from './FlightResults';
+
+import FareSelection from './FareSelection';
 
 type UserPersona = 'personal' | 'business';
 
@@ -39,9 +42,10 @@ export default function App() {
   };
 
   // Shared Travel State context
+  const [currentPage, setCurrentPage] = useState<'home' | 'search-results' | 'fare-selection'>('home');
   const [travelState, setTravelState] = useState({
-    origin: "Delhi (DEL)",
-    destination: "Mumbai (BOM)",
+    origin: "Kochi (COK)",
+    destination: "Dubai (DXB)",
     departureDate: "12 Apr",
     returnDate: "18 Apr",
     flightTravellers: "1 Adult, Economy",
@@ -213,7 +217,11 @@ export default function App() {
         </header>
 
         <AnimatePresence mode="wait">
-          {persona === 'personal' ? (
+          {currentPage === 'fare-selection' ? (
+             <FareSelection onBack={() => setCurrentPage('search-results')} onNext={() => console.log('next')} />
+          ) : currentPage === 'search-results' ? (
+             <FlightResults onBack={() => setCurrentPage('home')} onSelect={() => setCurrentPage('fare-selection')} />
+          ) : persona === 'personal' ? (
             <motion.div
               key="personal"
               initial={{ opacity: 0, y: 15 }}
@@ -315,7 +323,9 @@ export default function App() {
                                    </div>
 
                                    {/* SEARCH BUTTON */}
-                                   <button className="h-16 px-8 rounded-xl bg-white text-[#001B94] hover:bg-gray-50 font-bold text-lg transition-all shadow-[0_4px_20px_rgba(255,255,255,0.15)] flex flex-col items-center justify-center gap-0.5 hover:scale-[1.02] active:scale-95 w-full lg:w-auto relative overflow-hidden group">
+                                   <button 
+                                     onClick={() => setCurrentPage('search-results')}
+                                     className="h-16 px-8 rounded-xl bg-white text-[#001B94] hover:bg-gray-50 font-bold text-lg transition-all shadow-[0_4px_20px_rgba(255,255,255,0.15)] flex flex-col items-center justify-center gap-0.5 hover:scale-[1.02] active:scale-95 w-full lg:w-auto relative overflow-hidden group">
                                      <div className="absolute inset-0 bg-gradient-to-r from-transparent via-[#001B94]/10 to-transparent translate-x-[-100%] group-hover:animate-[shimmer_1.5s_infinite]" />
                                      <span className="flex items-center gap-2"><Search className="w-5 h-5" /> Search</span>
                                      <span className="text-[10px] font-medium opacity-80 tracking-tight">Flights from ₹2999</span>
