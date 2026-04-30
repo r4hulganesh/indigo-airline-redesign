@@ -328,7 +328,7 @@ export default function App() {
                                      className="h-16 px-8 rounded-xl bg-white text-[#001B94] hover:bg-gray-50 font-bold text-lg transition-all shadow-[0_4px_20px_rgba(255,255,255,0.15)] flex flex-col items-center justify-center gap-0.5 hover:scale-[1.02] active:scale-95 w-full lg:w-auto relative overflow-hidden group">
                                      <div className="absolute inset-0 bg-gradient-to-r from-transparent via-[#001B94]/10 to-transparent translate-x-[-100%] group-hover:animate-[shimmer_1.5s_infinite]" />
                                      <span className="flex items-center gap-2"><Search className="w-5 h-5" /> Search</span>
-                                     <span className="text-[10px] font-medium opacity-80 tracking-tight">Flights from ₹2999</span>
+                                     <span className="text-[10px] font-medium opacity-80 tracking-tight">Flights from ₹18,000</span>
                                    </button>
                                  </div>
 
