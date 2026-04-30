@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 
 export default function FlightResults({ onBack, onSelect }: { onBack: () => void; onSelect?: () => void }) {
   const [activeSort, setActiveSort] = useState('Best');
+  const [selectedDate, setSelectedDate] = useState('29 Jun');
   const [compareList, setCompareList] = useState<number[]>([]);
   const [expandedFlights, setExpandedFlights] = useState<number[]>([]);
   const [selectedIntents, setSelectedIntents] = useState<string[]>(['Non-stop only']);
@@ -103,6 +104,9 @@ export default function FlightResults({ onBack, onSelect }: { onBack: () => void
     }
   ];
 
+  const economyFlights = flights.filter(f => f.tagTitle !== 'Business Class');
+  const businessFlights = flights.filter(f => f.tagTitle === 'Business Class');
+
   return (
     <motion.div 
       key="search-results"
@@ -123,7 +127,7 @@ export default function FlightResults({ onBack, onSelect }: { onBack: () => void
           <div className="flex flex-col shrink-0">
             <h2 className="text-2xl font-bold flex items-center gap-2 text-white/90">Kochi <ArrowRightLeft className="w-5 h-5 text-white/40" /> Dubai</h2>
             <p className="text-sm font-medium text-white/50 mt-2">29 Jun <span className="mx-1.5">•</span> 1 Adult <span className="mx-1.5">•</span> Economy</p>
-            <p className="text-xs font-medium text-white/40 mt-1.5">Showing 7 of 23 flights • from ₹18,300</p>
+            <p className="text-xs font-medium text-white/40 mt-1.5 inline-block py-0.5">7 of 23 flights • from ₹18.3K</p>
             <div className="flex items-center gap-2.5 text-[11px] font-medium text-white/60 mt-3 flex-wrap">
               <span className="flex items-center gap-1.5"><span className="text-[10px] opacity-40">●</span> ₹23K–₹26K typical</span>
               <span className="opacity-30">•</span>
@@ -135,68 +139,68 @@ export default function FlightResults({ onBack, onSelect }: { onBack: () => void
         </div>
 
         {/* RIGHT: Date Selector Strip */}
-        <div className="flex rounded-lg border border-white/5 overflow-hidden shrink-0 w-full lg:w-auto overflow-x-auto hide-scrollbar self-start">
+        <div className="flex gap-2 w-full lg:w-auto overflow-x-auto hide-scrollbar self-start">
              {[
-               { date: '27 Jun', price: '₹21,500' },
-               { date: '28 Jun', price: '₹20,800' },
-               { date: '29 Jun', price: '₹22,500', isSelected: true },
-               { date: '30 Jun', price: '₹21,900' },
-               { date: '1 Jul', price: '₹19,800' },
+               { date: '27 Jun', price: '₹21.5K' },
+               { date: '28 Jun', price: '₹20.8K' },
+               { date: '29 Jun', price: '₹22.5K' },
+               { date: '30 Jun', price: '₹21.9K' },
+               { date: '1 Jul', price: '₹19.8K' },
+               { date: '2 Jul', price: '₹18.3K' },
              ].map((day, idx) => (
-               <div key={idx} className={`px-4 py-2 flex flex-col items-center justify-center min-w-[75px] border-r border-white/5 last:border-0 ${day.isSelected ? 'bg-white/10 border-b border-b-white/20' : ''}`}>
-                 <span className={`text-[10px] uppercase font-bold tracking-wider ${day.isSelected ? 'text-white' : 'text-white/40'}`}>{day.date}</span>
-                 <span className={`text-xs font-semibold ${day.isSelected ? 'text-white/90' : 'text-white/60'}`}>{day.price}</span>
-               </div>
+               <button 
+                 key={idx} 
+                 onClick={() => setSelectedDate(day.date)}
+                 className={`px-4 py-2 flex flex-col items-center justify-center min-w-[70px] rounded-lg border transition-colors shrink-0 ${
+                   selectedDate === day.date 
+                     ? 'bg-white/10 border-white/30 shadow-sm' 
+                     : 'bg-white/5 border-white/5 hover:border-white/10'
+                 }`}
+               >
+                 <span className={`text-[10px] uppercase font-bold tracking-wider ${selectedDate === day.date ? 'text-white' : 'text-white/40'}`}>{day.date}</span>
+                 <span className={`text-xs font-semibold ${selectedDate === day.date ? 'text-white/90' : 'text-white/60'}`}>{day.price}</span>
+               </button>
              ))}
+             <button className="px-4 py-2 flex flex-col items-center justify-center min-w-[70px] rounded-lg border bg-white/5 border-white/5 hover:border-white/10 transition-colors shrink-0">
+               <span className="text-[14px] leading-none mb-1">📅</span>
+               <span className="text-[9px] font-bold text-white/50 uppercase tracking-wider">All dates</span>
+             </button>
           </div>
         </div>
 
-      {/* FILTER ROW (PRIMARY ACTION) */}
-      <div className="flex flex-wrap items-center gap-2 mt-4 mb-6">
-        <button className="px-3 py-1.5 rounded-full text-xs font-semibold transition-all border bg-blue-600/20 border-blue-400/50 text-blue-100 flex items-center gap-1.5">
-          <Star className="w-3.5 h-3.5" /> Non-stop under ₹22k
-        </button>
-        <button className="px-3 py-1.5 rounded-full text-xs font-semibold transition-all border bg-white/5 border-white/10 text-white/70 hover:bg-white/10 hover:text-white">
-          Cheapest
-        </button>
-        <button className="px-3 py-1.5 rounded-full text-xs font-semibold transition-all border bg-white/5 border-white/10 text-white/70 hover:bg-white/10 hover:text-white">
-          Fastest
-        </button>
-        <button className="px-3 py-1.5 rounded-full text-xs font-semibold transition-all border bg-white/5 border-white/10 text-white/70 hover:bg-white/10 hover:text-white">
-          Flexible
-        </button>
+      {/* FILTER AND SORT CHIPS */}
+      <div className="flex flex-wrap items-center gap-2 mt-4 mb-4">
+        {['Best', 'Cheapest', 'Fastest', 'Non-stop', 'Flexible'].map(opt => (
+          <button 
+            key={opt}
+            onClick={() => setActiveSort(opt)}
+            className={`px-3 py-1.5 rounded-full text-xs font-semibold transition-all border ${
+              activeSort === opt 
+                ? 'bg-white/20 border-white/40 text-white shadow-sm' 
+                : 'bg-white/5 border-white/10 text-white/70 hover:bg-white/10 hover:text-white'
+            }`}
+          >
+            {opt}
+          </button>
+        ))}
         <button className="px-3 py-1.5 rounded-full text-xs font-semibold transition-all border bg-white/5 border-white/10 text-white/70 hover:bg-white/10 hover:text-white flex items-center gap-1">
           More filters <ChevronDown className="w-3.5 h-3.5" />
         </button>
       </div>
 
+      {/* SMART PICK STICKY STRIP */}
+      <div className="sticky top-4 z-40 bg-blue-900/60 backdrop-blur-xl border border-blue-400/20 rounded-xl px-4 py-3 flex items-center justify-between mb-4 shadow-[0_8px_30px_rgba(0,0,0,0.2)]">
+        <p className="text-[11px] sm:text-xs font-medium text-blue-100">
+           <span className="font-bold text-white mr-1.5">Smart pick:</span> <span className="whitespace-nowrap">06:00 → 08:15 • ₹22,500 • Non-stop</span>
+        </p>
+        <button onClick={onSelect} className="text-[10px] sm:text-[11px] font-bold bg-white text-blue-900 transition-colors px-3 sm:px-4 py-1.5 rounded-md hover:bg-blue-50">View</button>
+      </div>
+
       {/* Main List */}
       <div className="w-full space-y-3">
-          
-          {/* Sorter */}
-          <div className="flex flex-col gap-1.5 w-full">
-            <div className="flex w-full bg-blue-900/10 backdrop-blur-md border border-white/10 shadow-sm rounded-xl p-1 relative z-10">
-               {['Best', 'Cheapest', 'Fastest'].map(opt => (
-                 <button 
-                   key={opt}
-                   onClick={() => setActiveSort(opt)}
-                   className={`flex-1 py-2 text-xs font-bold transition-all rounded-lg border ${
-                     activeSort === opt 
-                       ? 'bg-blue-400/20 border-blue-400/20 text-white shadow-[0_2px_10px_rgba(59,130,246,0.15)]' 
-                       : 'border-transparent text-white/50 hover:text-white/80 hover:bg-white/5'
-                   }`}
-                 >
-                   {opt}
-                 </button>
-               ))}
-            </div>
-            <p className="text-[10px] font-medium text-white/40 px-2 mb-1">
-              Sorted by: {activeSort} {activeSort === 'Best' ? '(price + duration balance)' : activeSort === 'Cheapest' ? '(lowest total fare)' : '(shortest travel time)'}
-            </p>
-          </div>
 
           <div className="flex flex-col gap-3">
-            {flights.map((flight, idx) => (
+            {economyFlights.map((flight, idx) => (
               <React.Fragment key={flight.id}>
                 {idx === 0 && (
                    <div className="flex items-center gap-2 px-2 mt-2">
@@ -393,51 +397,85 @@ export default function FlightResults({ onBack, onSelect }: { onBack: () => void
                   </div>
                 </div>
 
-                {/* CONTEXTUAL OFFER BLOCK 1: HOTEL */}
-                {(idx === 0 || idx === 1 || idx === 3) && (
-                  <div className="bg-white/[0.02] border border-white/5 lg:rounded-xl p-3 flex flex-col sm:flex-row items-center justify-between backdrop-blur-sm -mx-4 lg:mx-0 my-1 gap-3 sm:gap-0 transition-colors hover:bg-white/[0.04]">
-                    <div className="flex items-center gap-3 w-full sm:w-auto">
-                      <div className="w-8 h-8 rounded-lg bg-emerald-500/10 border border-emerald-500/20 flex flex-col items-center justify-center shrink-0">
-                         <Building2 className="w-3.5 h-3.5 text-emerald-400" />
-                      </div>
-                      <p className="text-[11px] font-medium text-white/70">
-                        {idx === 1 
-                          ? <>Stay in Dubai from <span className="font-bold text-white">₹3,000/night</span> + Earn <span className="text-emerald-400 font-bold">500 BluChips</span></>
-                          : <>+ Add hotel & save <span className="text-white/90 font-bold">₹1,200</span> on this trip</>
-                        }
-                      </p>
-                    </div>
-                    <button className="w-full sm:w-auto text-[10px] font-bold text-white/80 hover:text-white transition-colors whitespace-nowrap px-4 border border-white/10 rounded py-1.5 hover:bg-white/5">View Hotels</button>
-                  </div>
-                )}
-
-                {/* CONTEXTUAL OFFER BLOCK 2: EXPERIENCE */}
-                {idx === 4 && (
-                  <div className="bg-white/[0.02] border border-white/5 lg:rounded-xl p-3 flex flex-col sm:flex-row items-center justify-between backdrop-blur-sm -mx-4 lg:mx-0 my-1 gap-3 sm:gap-0 transition-colors hover:bg-white/[0.04]">
-                    <div className="flex items-center gap-3 w-full sm:w-auto">
-                      <div className="w-8 h-8 rounded-lg bg-blue-500/10 border border-blue-500/20 flex flex-col items-center justify-center shrink-0">
-                         <Star className="w-3.5 h-3.5 text-blue-400" />
-                      </div>
-                      <p className="text-[11px] font-medium text-white/70">Skip the line at <span className="font-bold text-white">Burj Khalifa</span> – Book tickets in advance</p>
-                    </div>
-                    <button className="w-full sm:w-auto text-[10px] font-bold text-white/80 hover:text-white transition-colors whitespace-nowrap px-4 border border-white/10 rounded py-1.5 hover:bg-white/5">Explore Tours</button>
-                  </div>
-                )}
-
-                {/* CONTEXTUAL OFFER BLOCK 3: TRAVEL BUNDLE */}
-                {idx === 6 && (
-                  <div className="bg-white/[0.02] border border-white/5 lg:rounded-xl p-3 flex flex-col sm:flex-row items-center justify-between backdrop-blur-sm -mx-4 lg:mx-0 my-1 gap-3 sm:gap-0 transition-colors hover:bg-white/[0.04]">
-                    <div className="flex items-center gap-3 w-full sm:w-auto">
-                      <div className="w-8 h-8 rounded-lg bg-purple-500/10 border border-purple-500/20 flex flex-col items-center justify-center shrink-0">
-                         <Plane className="w-3.5 h-3.5 text-purple-400" />
-                      </div>
-                      <p className="text-[11px] font-medium text-white/70">Add a <span className="font-bold text-white">Free meal + baggage combo</span> for just <span className="text-purple-400 font-bold">₹499</span></p>
-                    </div>
-                    <button className="w-full sm:w-auto text-[10px] font-bold text-white/80 hover:text-white transition-colors whitespace-nowrap px-4 border border-white/10 rounded py-1.5 hover:bg-white/5">Add-ons</button>
-                  </div>
-                )}
               </React.Fragment>
             ))}
+
+            {businessFlights.length > 0 && (
+              <div className="mt-6 pt-6 border-t border-white/10">
+                <h3 className="text-sm font-bold text-white/90 mb-4 px-2">Business Class</h3>
+                <div className="flex flex-col gap-3">
+                  {businessFlights.map((flight, idx) => (
+                    <React.Fragment key={flight.id}>
+                      <div className="glass-panel-dark border border-white/10 hover:border-white/20 rounded-2xl p-4 relative overflow-hidden backdrop-blur-lg group transition-all duration-300 hover:shadow-[0_12px_40px_rgba(0,0,0,0.2)] hover:-translate-y-1">
+                        
+                        <div className="flex flex-col lg:flex-row justify-between lg:items-center relative z-0 mt-2 lg:mt-0">
+                          
+                          {/* LEFT - Flight Understanding */}
+                          <div className="flex flex-col w-[200px] shrink-0 mb-5 lg:mb-0">
+                            <div className="flex items-center gap-3 mb-3">
+                              <div className="w-6 h-6 bg-white rounded flex items-center justify-center p-0.5 shrink-0">
+                                <img src="https://upload.wikimedia.org/wikipedia/commons/6/69/IndiGo_Airlines_logo.svg" alt="IndiGo" className="w-full object-contain" />
+                              </div>
+                              <p className="text-sm font-semibold text-white/70">{flight.airline} • {flight.flightNo}</p>
+                            </div>
+                            
+                            <div className="flex flex-col gap-1.5 w-full mt-1">
+                              <div className="inline-flex bg-orange-400/10 text-orange-200/90 text-[10px] uppercase font-bold tracking-widest px-2.5 py-1.5 rounded items-center gap-2 w-fit border border-orange-400/20">
+                                <Star className="w-3.5 h-3.5 text-orange-400" /> {flight.tagTitle}
+                              </div>
+                              <p className="text-[11px] text-white/50 font-medium ml-1 leading-snug">{flight.tagDesc}</p>
+                            </div>
+                          </div>
+
+                          {/* CENTER - Route Visualization */}
+                          <div className="flex-1 grid grid-cols-[1fr_auto_1fr] items-start min-w-[280px]">
+                            <div className="text-right">
+                              <p className="font-extrabold text-2xl leading-none mb-1">{flight.departureTime}</p>
+                              <p className="text-xs font-medium text-white/50">Kochi</p>
+                            </div>
+                            <div className="flex flex-col items-center px-2 w-[160px] sm:w-[240px]">
+                              <p className="text-[10px] font-medium text-white/40 whitespace-nowrap mb-1.5 hidden sm:block">
+                                {flight.duration} • <span className={flight.stops === 'Non-stop' ? 'text-emerald-400 font-bold' : ''}>{flight.stops}</span>
+                              </p>
+                              <div className="flex items-center w-full">
+                                <div className="w-1.5 h-1.5 rounded-full border border-white/30 bg-transparent z-10 box-content flex-shrink-0" />
+                                <div className="flex-1 h-px bg-white/20 mx-0.5" />
+                                <div className="w-1.5 h-1.5 rounded-full border border-white/30 bg-white z-10 box-content flex-shrink-0" />
+                              </div>
+                            </div>
+                            <div className="text-left">
+                              <p className="font-extrabold text-2xl leading-none mb-1">{flight.arrivalTime}</p>
+                              <p className="text-xs font-medium text-white/50">Dubai</p>
+                            </div>
+                          </div>
+
+                          <div className="hidden lg:block w-px h-12 bg-white/10 mx-6 shrink-0" />
+
+                          {/* RIGHT - Decision Confirmation */}
+                          <div className="flex flex-col justify-center items-end w-full lg:w-[280px] shrink-0 mt-5 lg:mt-0">
+                            <div className="flex flex-col items-end text-right w-full gap-1">
+                              <p className="text-2xl font-bold text-white tracking-tight">₹{(flight.basePrice - flight.bluChipsSavings).toLocaleString('en-IN')}</p>
+                              {flight.bluChipsSavings > 0 && (
+                                <p className="text-[11px] font-medium text-white/40 whitespace-nowrap">
+                                  <span className="line-through decoration-white/20">₹{flight.basePrice.toLocaleString('en-IN')}</span> • save ₹{flight.bluChipsSavings.toLocaleString('en-IN')} with BluChips
+                                </p>
+                              )}
+                            </div>
+                            <div className="flex flex-col items-end mt-3">
+                              <p className="text-[10px] text-white/50 mb-1.5 font-medium">Business fare included</p>
+                              <button onClick={onSelect} className="bg-white/5 hover:bg-white/10 active:bg-white/5 active:scale-[0.98] border border-white/10 hover:border-white/20 text-white rounded-md px-6 py-2.5 font-bold text-[11px] transition-all flex items-center justify-center gap-1.5 w-auto group/btn">
+                                Select <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover/btn:translate-x-1"/>
+                              </button>
+                            </div>
+                          </div>
+
+                        </div>
+                      </div>
+                    </React.Fragment>
+                  ))}
+                </div>
+              </div>
+            )}
 
             {/* End of results block */}
             <div className="mt-8 pt-8 border-t border-white/10 flex flex-col items-center">
@@ -458,7 +496,11 @@ export default function FlightResults({ onBack, onSelect }: { onBack: () => void
               <div className="mt-16 flex flex-col items-center gap-2 mb-8">
                 <div className="w-1.5 h-1.5 rounded-full bg-white/20 mb-2" />
                 <p className="text-sm font-bold text-white/40">End of results</p>
-                <p className="text-[11px] font-medium text-white/30">Showing 7 of 23 flights for Kochi → Dubai</p>
+                <p className="text-[11px] font-medium text-white/30">7 of 23 flights for Kochi → Dubai</p>
+                
+                <button className="mt-6 text-[12px] font-medium text-white/40 hover:text-white/80 transition-colors flex items-center gap-1.5 group">
+                  Join BluChip — earn rewards on every trip <ArrowRight className="w-3 h-3 group-hover:translate-x-0.5 transition-transform" />
+                </button>
               </div>
             </div>
 
